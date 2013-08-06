@@ -13,6 +13,17 @@ and open the template in the editor.
         <link href="assets/css/mainapp.css" rel="stylesheet">
         <link href="assets/css/sentimental.css" rel="stylesheet">
 
+        <!--google map style and js-->
+
+        <style>
+            html,body,#googlemap-canvas{
+            }
+       
+        </style>
+        
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false&language=en&libraries=visualization"></script>              
+        <script src="assets/js/googlemap.js"></script>
+        
     </head>
     <body>
         <div class="container">
@@ -36,7 +47,9 @@ and open the template in the editor.
 
                 <div class="span9">
                     <p>Map</p>
-                    <img src="assets/js/holder.js/900x470/gary" class="img-rounded">
+<!--                    <img src="assets/js/holder.js/900x470/gary" class="img-rounded">-->
+                    <div id="googlemap-canvas" style="width: 100%; height:100%; height:470px; width: 870px"></div> 
+                    
                 </div>        
 
                 <div class="span3">
@@ -50,7 +63,8 @@ and open the template in the editor.
                 <div class="span9">
 <!--                    <img src="assets/js/holder.js/900x20/industrial" class="img-rounded">-->
 
-                         Date <input type="range" id="rangeselect" min="0" max="613">  
+                    <p>Date</p> 
+                    <input type="range" id="rangeselect" min="0" max="613">  
                                     
                 </div>        
             </div>
