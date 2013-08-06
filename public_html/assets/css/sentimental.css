@@ -1,0 +1,27 @@
+/* 
+    Document   : sentimental
+    Created on : Aug 5, 2013, 3:59:48 PM
+    Author     : Hui Yang <hyang@i-a-i.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: silver;
+    width: 830px;
+    height:10px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+     -webkit-appearance: none;
+    background-color: #5bb75b;
+    opacity: 0.9;
+    width: 10px;
+    height: 26px;
+}
