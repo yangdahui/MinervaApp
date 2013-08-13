@@ -95,15 +95,20 @@ var taxiData = [
 google.maps.visualRefresh = true;
 
 var map;
+var markers = [];
+
 function initialize() {
+    var myLatlng = new google.maps.LatLng(38.89, -77.03);
+
     var mapOptions = {
         zoom: 8,
-        center: new google.maps.LatLng(38.89, -77.03),
+        center: myLatlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     map = new google.maps.Map(document.getElementById('googlemap-canvas'),
             mapOptions);
 
+    // heatmap with taxiData pointarray 
     pointArray = new google.maps.MVCArray(taxiData);
 
     heatmap = new google.maps.visualization.HeatmapLayer({
@@ -112,11 +117,91 @@ function initialize() {
 
     heatmap.setOptions({radius: 30});
 
-    // heatmap.setMap(map);        
-}
+    // heatmap.setMap(map);       
 
-function toggleHeatmap() {
-    heatmap.setMap(heatmap.getMap() ? null : map);
+    //
+    // information box with event messages
+
+    //content of message
+    var contentString = '<div id="content">' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h2 id="firstHeading" class="firstHeading">Anti-Gaddafi uprising</h1>' +
+            '<div id="bodyContent">' +
+            '<p>2012 January - Clashes erupt between former rebel forces in Benghazi \n\
+        in sign of discontent with the pace and nature of change under the governing NTC. \n\
+        The deputy head of the NTC, Abdel Hafiz Ghoga, resigns\n\</p>' +
+            '</div>' +
+            '</div>';
+
+    //information windows   
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString,
+        maxWidth: 400
+    });
+
+    //attached infowindow with a geo-located marker
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: 'event 1'
+    });
+
+    //endof information box with event messages
+    //
+
+    google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map, marker);
+    });
+    
+    google.maps.event.addListener(map, 'click', function(event) {
+        addMarker(event.latlng);
+    });
+
 }
+//
+//function toggleHeatmap() {
+//    heatmap.setMap(heatmap.getMap() ? null : map);
+//}
+
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+
+//add new marker into markers array
+function addMarker(location) {
+    marker = new google.maps.Marker({
+        position: location,
+        map: map
+    });
+    markers.push(marker);
+}
+
+//set markers array on map
+function setMarkersOnMap(map) {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+    }
+}
+
+
+function testfunction() {
+
+    var minlat = 39.80;
+    var maxlat = 39.90;
+
+    var minlng= 79.00;
+    var maxlng = 79.10;
+   
+
+    var lat = Math.floor(Math.random() * (maxlat - minlat + 1)) + minlat;
+    var lng = (Math.floor(Math.random() * (maxlng - minlng + 1)) + minlng ) *(-1);
+
+    //var myLatlng2 = new google.maps.LatLng(39.89, -79.03);
+    var ramLatLng = new google.maps.LatLng(lat, lng);
+    addMarker(ramLatLng);
+    
+}
+
