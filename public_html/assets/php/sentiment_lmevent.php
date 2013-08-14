@@ -19,7 +19,8 @@ $dbname = 'result';
 $task_id = 2;
 
 // Connect to test database  
-$m = new Mongo("mongodb://$dbhost");
+$m = new Mongo("mongodb://$dbhost");$m = new Mongo("mongodb://$dbhost");
+
 $db = $m->$dbname;
 
 // select the collection  
@@ -81,6 +82,9 @@ $cursor = $collection->find($query);
 $append = "";
 //string is in json format
 //right now, I only consider epidemics "listeria" ,"influenza" and "swine flu"
+
+//format a string as json, as input of chart
+
 $string = "{ cols: [{id: '', label: 'Date', type: 'date'},
                     {id: '', label: 'raw-mpqa', type: 'number'},
                     {id: '', label: 'title2', type: 'string'},
@@ -117,14 +121,17 @@ $string = "{ cols: [{id: '', label: 'Date', type: 'date'},
 //iterate through the mongodb results
 foreach ($cursor as $document) {
     $count = 0;
+    
     $year = $document["date"]["year"];
     $month = $document["date"]["month"];
     $day = $document["date"]["day"];
+    
     $append = $append . "{c:[{v: new Date(" . $year . ", " . ($month - 1) . ", " . $day . ")}";
 
     $append = $append . ", {v: " . $document["sentiment"]["raw"]["mpqa-positive"] . "}, {v: undefined}, {v: undefined}";
     $append = $append . ", {v: " . $document["sentiment"]["raw"]["afinn-positive"] . "}, {v: undefined}, {v: undefined}";
     $append = $append . ", {v: " . $document["sentiment"]["raw"]["liwc-positive"] . "}, {v: undefined}, {v: undefined}";
+    
     $append = $append . ", {v: " . $document["sentiment"]["topic"]["mpqa-positive"] . "}, {v: undefined}, {v: undefined}";
     $append = $append . ", {v: " . $document["sentiment"]["topic"]["afinn-positive"] . "}, {v: undefined}, {v: undefined}";
     $append = $append . ", {v: " . $document["sentiment"]["topic"]["liwc-positive"] . "}, {v: undefined}, {v: undefined}";
@@ -267,6 +274,7 @@ echo $string;
                 <input type="checkbox" name="rawmpqa" onclick="handleClick(this.form)" />raw-mpqa
                 <input type="checkbox" name="rawafinn" onclick="handleClick(this.form)" />raw-afinn
                 <input type="checkbox" name="rawliwc" onclick="handleClick(this.form)" />raw-liwc
+                
                 <input type="checkbox" name="topicmpqa" onclick="handleClick(this.form)" />topic-mpqa
                 <input type="checkbox" name="topicafinn" onclick="handleClick(this.form)" />topic-afinn
                 <input type="checkbox" name="topicliwc" onclick="handleClick(this.form)" />topic-liwc
