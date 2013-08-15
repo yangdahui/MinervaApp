@@ -20,11 +20,12 @@ $cursor = $collection->find($query);
 
 $proportionarray = array();
 
+$datearray = array();
+
 // iterate proportion
 foreach ($cursor as $document) {
     array_push($proportionarray, $document["topic"]["proportion"]);
 }
-
 
 $proportionarraybytopic = array(
     "topic 0" => array(),
@@ -54,15 +55,60 @@ $proportionarraybytopic = array(
 $daycount = 613;
 $topiccount = 20;
 
+//create date array for x value
+for ($dayindex = 0; $dayindex < $daycount; $dayindex++) {
+        array_push($datearray, $dayindex+1);
+}
+
+//var_dump($datearray);
+
 for ($topicindex = 0; $topicindex < $topiccount; $topicindex++) {
 
-    $topicname = "topic " . (string) $topicindex;
+    $topicname = "topic ".(string) $topicindex;
 
     for ($dayindex = 0; $dayindex < $daycount; $dayindex++) {
-        array_push($proportionarraybytopic[$topicname], $proportionarray[$dayindex + $daycount * $topicindex]);
+        array_push($proportionarraybytopic[$topicname], $proportionarray[$topicindex + $dayindex * $topiccount]);
     }
 }
 
-echo json_encode($proportionarraybytopic);
+//echo json_encode($proportionarraybytopic);
+
+$keyfieldname = "key";
+$valuefieldname = "values";
+
+$exportdata ="[";
+
+
+for ($topicindex = 0; $topicindex < $topiccount; $topicindex++) {
+
+    $topicname = "topic ".(string)$topicindex;
+
+    $exportdata = $exportdata ."{\"" . $keyfieldname . "\":\"" .$topicname."\",";
+    
+    $exportdata = $exportdata . "\"".$valuefieldname. "\":";
+ 
+    $exportdata = $exportdata ."[";
+    
+    for($dayindex = 0; $dayindex<$daycount; $dayindex++){
+        
+       $exportdata = $exportdata . "[" . $datearray[$dayindex].",";
+       $exportdata = $exportdata . $proportionarraybytopic[$topicname][$dayindex]."]".",";
+    }
+    
+    $exportdata= rtrim($exportdata, ",");
+    
+    $exportdata = $exportdata ."]";
+    
+    $exportdata = $exportdata ."},";
+
+}
+
+$exportdata= rtrim($exportdata, ",");
+
+$exportdata =$exportdata."];";
+
+echo $exportdata;
+
+
 ?>
 

@@ -19,7 +19,7 @@ $dbname = 'result';
 $task_id = 2;
 
 // Connect to test database  
-$m = new Mongo("mongodb://$dbhost");$m = new Mongo("mongodb://$dbhost");
+$m = new Mongo("mongodb://$dbhost");
 
 $db = $m->$dbname;
 
@@ -70,8 +70,6 @@ foreach ($temp_cursor as $document) {
     }
     $count++;
 }
-
-
 
 // get the results from one task  
 $query = array("task_id" => 2);
