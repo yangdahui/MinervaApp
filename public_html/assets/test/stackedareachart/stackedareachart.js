@@ -98,7 +98,8 @@ var allTags = stack(color.domain().map(function (name) {
 var focus, svg;
      svg = d3.select("body").append("svg")
         .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("height", height + margin.top + margin.bottom);
+
   focus = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
