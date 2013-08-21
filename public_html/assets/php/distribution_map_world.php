@@ -11,7 +11,7 @@
       var data = new google.visualization.arrayToDataTable(
 	  <?php
 		// Config  
-			$dbhost = '10.5.34.11';  
+			$dbhost = 'localhost';  
 			$dbname = 'test';  
 			  
 			// Connect to test database  
@@ -56,7 +56,7 @@
       
       var geochart = new google.visualization.GeoChart(
           document.getElementById('visualization'));
-      geochart.draw(data, {width: 500, height: 350, backgroundColor: 'white', colors:['white','#ad1313']});
+      geochart.draw(data, {width: 300, height: 180, backgroundColor: 'white', colors:['white','#ad1313']});
     }
     
 

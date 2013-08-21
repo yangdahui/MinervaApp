@@ -14,7 +14,7 @@
                 data = new google.visualization.DataTable(
 <?php
 // Config  
-$dbhost = '10.5.34.11';
+$dbhost = 'localhost';
 $dbname = 'result';
 $task_id = 2;
 

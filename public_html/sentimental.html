@@ -34,10 +34,22 @@ and open the template in the editor.
                         <div class="container">
                             <ul class="nav">
                                 <li><a href="index.html">Home</a></li>
-                                <li><a href="#">Projects</a></li>
-                                <li><a href="#">Publication</a></li>
+                                
+                                <li><a href="datacollection.html">Data Collection</a></li>
+                                
+                                <li class="dropdown">
+                                    <a href="#" id="drop1" class="dropdown-toggle" data-toggle="dropdown">Features <b class="caret"></b></a>
+                                    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="drop1">
+                                      <li><a role="menuitem" tabindex="-1" href="sentimental.html">Sentiment Analysis</a></li>
+                                      <li><a role="menuitem" tabindex="-1" href="topicmodel.html">Topic Modeling</a></li>
+                                      <li><a role="menuitem" tabindex="-1" href="#">Information Extraction</a></li>
+                                      <li><a role="menuitem" tabindex="-1" href="textsum.html">Text Summarization</a></li>
+                                    </ul>
+                                 </li><!-- /.dropdown -->
+                                  
                                 <li><a href="about.html">About</a></li>
-                            </ul>
+                                
+                            </ul><!-- /.nav -->
                         </div>
                     </div>
                 </div><!-- /.navbar -->
@@ -86,19 +98,34 @@ and open the template in the editor.
             </div>-->
             
             <div class="row-fluid">
-            <h2>Sentiment Analysis </h2>
-                <div class="span6">
-                    <iframe src="//localhost/MinervaApp/public_html/assets/php/distribution_map_world.php" width="550" height="380" frameborder="0">
-                    </iframe> 
-                </div>        
+<!--            <h3>Sentiment Analysis </h3>-->
+            
+            <div class="span8">
+                    <div id="googlemap-canvas" style="width: 100%; height:100%; height:400px; width: 800px"></div> 
 
-                <div class="span5">
-                    <iframe src="//localhost/MinervaApp/public_html/assets/php/distribution_map_usa.php" width="550" height="380" frameborder="0">
-                    </iframe> 
+            </div>  
+            
+            <div class="span3">
+                
+                <div class="row-fluid">
+                    
+                <div class="span12">
+                    <iframe src="//localhost/MinervaApp/public_html/assets/php/distribution_map_world.php" width="400" height="200" frameborder="0">
+                    </iframe>      
                 </div>
-
+                </div>
+                
+                <div class="row-fluid">
+                <div class="span12">
+                        <iframe src="//localhost/MinervaApp/public_html/assets/php/distribution_map_usa.php" width="400" height="200" frameborder="0">
+                        </iframe> 
+                 </div>
+                </div>
             </div>
-
+            
+            </div> 
+<hr>
+    
              <div class="row-fluid">
                  
                 <div class="span12">                  
@@ -107,8 +134,6 @@ and open the template in the editor.
                     </iframe>                   
                 </div>                        
             </div>
-            
-
 
             <hr>
 
@@ -122,11 +147,11 @@ and open the template in the editor.
     ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <!--        <script src="assets/js/jquery.js"></script>-->
-        <script src="assets/js/bootstrap.js"></script>
-        <script src="assets/js/holder.js"></script>
-
         <script src="assets/js/jquery-1.9.0/jquery.min.js"></script>
         <script src="assets/js/jqueryui-1.10.0/jquery-ui.min.js"></script>
+        
+        <script src="assets/js/bootstrap.js"></script>
+        <script src="assets/js/holder.js"></script>
 
     </body>
 </html>
